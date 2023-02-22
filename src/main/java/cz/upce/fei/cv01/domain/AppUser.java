@@ -3,10 +3,10 @@ package cz.upce.fei.cv01.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -31,4 +31,10 @@ public class AppUser {
 
     @Column
     private Date updateDate;
+
+    @OneToMany(mappedBy = "author")
+    private List<Task> tasks = Collections.emptyList();
+
+    @ManyToMany(mappedBy = "users")
+    private List<Role> roles = Collections.emptyList();
 }
